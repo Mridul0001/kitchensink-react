@@ -1,0 +1,1 @@
+export const API_URL = 'http://20.40.53.226:8080/kitchensink/rest';
