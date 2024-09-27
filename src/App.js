@@ -35,10 +35,8 @@ const App = () => {
   const handleSave = async (member) => {
     try{
       await createMember(member, token)
-    }catch(error) {
-      if (error.response && error.response.data) {
-        alert(error.response.data.errorMessage || 'An error occurred');
-      }
+    }catch(error){
+      throw error;
     }
     fetchMembers(token);
     setCurrentMember(null);
@@ -46,13 +44,11 @@ const App = () => {
   };
 
   const handleUpdate = async (member) => {
+    member.id = currentMember.id;
     try{
-      member.id = currentMember.id;
       await updateMember(member, token)
-    }catch(error) {
-      if (error.response && error.response.data) {
-        alert(error.response.data.errorMessage || 'An error occurred');
-      }
+    }catch(error){
+      throw error;
     }
     fetchMembers(token);
     setCurrentMember(null);
